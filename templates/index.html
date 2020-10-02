@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <head>
    <title>Natural Image Classifier</title>
-   <h1 class="intro">Natural Image Classifier</h1>
+   <h1 class="intro" style="text-align:center">Natural Image Classifier</h1>
    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -11,8 +11,16 @@
 </head>
 <div class="login">
 	<body>
+		<style>
+body {
+  background-image: url("../static/nature.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+</style>
 	 	 
-	  <div class="form">
+	  <div class="form" align="center">
 	  <form method=post enctype=multipart/form-data> 
 	  	<input type=file name=file size="60" />
 		<input type=submit value=Predict>
