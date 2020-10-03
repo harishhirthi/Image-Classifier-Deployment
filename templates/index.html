@@ -8,23 +8,52 @@
 <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-</head>
-<div class="login">
-	<body>
-		<style>
+<style>
 body {
   background-image: url("../static/nature.webp");
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
 }
+table, th, td {
+  border: 1px solid black;
+}
 </style>
+</head>
+<div class="login">
+	<body>
+		
 	 	 
 	  <div class="form" align="center">
 	  <form method=post enctype=multipart/form-data> 
 	  	<input type=file name=file size="60" />
 		<input type=submit value=Predict>
 	  </form>
+	<br>
+	<br>
+	<table style="width:50%">
+	<caption>Scores</caption>
+  	<tr>
+    	<th>Airplane</th>
+    	<th>Car</th> 
+    	<th>Cat</th>
+	<th>Dog</th>
+    	<th>Flower</th> 
+    	<th>Fruit</th>
+    	<th>Motorbike</th> 
+    	<th>Person</th>
+  	</tr>
+  	<tr>
+    	<td>{{air}}</td>
+    	<td>{{car}}</td>
+    	<td>{{cat}}</td>
+	<td>{{dog}}</td>
+    	<td>{{flower}}</td>
+    	<td>{{fruit}}</td>
+	<td>{{motor}}</td>
+    	<td>{{person}}</td>
+  	</tr>
+	</table>
 	
 	<br>
    	<br>
