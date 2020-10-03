@@ -40,15 +40,24 @@ def predict(img):
     pred = model.predict(img)
     ind = int(np.argmax(pred, axis = 1))
 
-    return ind
+    return pred[0], ind
 
-@app.route('/result <ind>', methods=['GET', 'POST'])
-def result(ind):
+@app.route('/result <prob0> <prob1> <prob2> <prob3> <prob4> <prob5> <prob6> <prob7> <ind>', methods=['GET', 'POST'])
+def result(prob0, prob1, prob2, prob3, prob4, prob5, prob6, prob7, ind):
     if request.method == 'POST':
         return redirect(url_for('upload_file'))
     ind = int(ind)
     labels = ['airplane', 'car', 'cat', 'dog', 'flower', 'fruit', 'motorbike', 'person']
-    return render_template('index.html', prediction_text='Image is {}'.format(labels[ind]))
+    prob0 = round(float(prob0), 3) * 100
+    prob1 = round(float(prob1), 3) * 100
+    prob2 = round(float(prob2), 3) * 100
+    prob3 = round(float(prob3), 3) * 100
+    prob4 = round(float(prob4), 3) * 100
+    prob5 = round(float(prob5), 3) * 100
+    prob6 = round(float(prob6), 3) * 100
+    prob7 = round(float(prob7), 3) * 100
+    return render_template('index.html', air=prob0, car=prob1, cat=prob2, dog=prob3, flower=prob4, fruit=prob5, motor=prob6,
+                           person=prob7, prediction_text='Image is {}'.format(labels[ind]))
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -67,8 +76,8 @@ def upload_file():
 			filename = secure_filename(file.filename)
 			#filename=os.path.join(app.config['UPLOAD_FOLDER'], filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			l=predict(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			return redirect(url_for('result',ind = l))
+			l, index=predict(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			return redirect(url_for('result', prob0=l[0], prob1=l[1], prob2=l[2], prob3=l[3], prob4=l[4], prob5=l[5], prob6=l[6], prob7=l[7], ind=index))
 			#redirect(request.url)
 	return render_template("index.html")
 
